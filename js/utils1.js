@@ -157,3 +157,60 @@ console.log(getObjectLength(obj)); // 3
 //console.log(isFunction(2));
 
 
+// 实现一个简单的Query
+//能力有限，不能实现组合使用
+function $(selector) {
+    var pattern = /#\w+|\.\w+|\w+|\[\w+=?\w+\]/gi;
+    var s;
+    while ((s = pattern.exec(selector)) != null){
+        return arguments.callee(s)[0]
+    }
+    var flag = selector.slice(0, 1);
+    var name = selector.slice(1, selector.length);
+    if (flag === "#") {
+        return document.getElementById(name);
+    } else if (flag === ".") {
+        return getElementByClaass(name);
+    } else if (flag === "[") {
+        return getElementByAttribute(name);
+    }else {
+        return document.getElementsByTagName(selector);
+    }
+}
+function getElementByClaass(name) {
+    var allElements = document.getElementsByTagName("*");
+    var results = [];
+    var pattern = /\w+/gi;
+    for (var i = 0; i < allElements.length; i++) {
+        pattern.lastIndex = 0;
+        while ((temp = pattern.exec(allElements[i].className)) != null) {
+            if (temp == name) {
+                results.push(allElements[i]);
+            }
+        }
+    }
+    return results;
+}
+function getElementByAttribute(name) {
+    console.log(name);
+    var allElements = document.getElementsByTagName("*");
+    var results = [];
+    name = name.slice(0, -1);
+    if (name.split("=").length > 1) {
+        var value = name.split("=")[1];
+        name = name.split("=")[0];
+        for (var i = 0; i < allElements.length; i++) {
+            if (allElements[i].getAttributeNode(name)
+                && allElements[i].getAttributeNode(name).value == value) {
+                results.push(allElements[i]);
+            }
+        }
+    } else {
+        for (var i = 0; i < allElements.length; i++) {
+            if (allElements[i].getAttributeNode(name)) {
+                results.push(allElements[i]);
+            }
+        }
+    }
+    return results;
+}
