@@ -2,20 +2,20 @@
  * Created by lenovo on 2015/7/24.
  */
 
-// ÅĞ¶ÏarrÊÇ·ñÎªÒ»¸öÊı×é£¬·µ»ØÒ»¸öboolÖµ
+// åˆ¤æ–­arræ˜¯å¦ä¸ºä¸€ä¸ªæ•°ç»„ï¼Œè¿”å›ä¸€ä¸ªboolå€¼
 function isArray(arr) {
     return arr instanceof Array;
 }
 
-// ÅĞ¶ÏfnÊÇ·ñÎªÒ»¸öº¯Êı£¬·µ»ØÒ»¸öboolÖµ
+// åˆ¤æ–­fnæ˜¯å¦ä¸ºä¸€ä¸ªå‡½æ•°ï¼Œè¿”å›ä¸€ä¸ªboolå€¼
 function isFunction(fn) {
     return typeof fn === "function" ? true : false;
 }
 
-//Éî¶È¿ËÂ¡
+//æ·±åº¦å…‹éš†
 function deepClone(obj) {
     var result, oClass = isClass(obj);
-    //È·¶¨resultµÄÀàĞÍ
+    //ç¡®å®šresultçš„ç±»å‹
     if (oClass === "Object") {
         result = {};
     } else if (oClass === "Array") {
@@ -26,21 +26,21 @@ function deepClone(obj) {
     for (key in obj) {
         var copy = obj[key];
         if (isClass(copy) == "Object" || isClass(copy) == "Array") {
-            result[key] = arguments.callee(copy);//µİ¹éµ÷ÓÃ
+            result[key] = arguments.callee(copy);//é€’å½’è°ƒç”¨
         } else {
             result[key] = copy;
         }
     }
     return result;
 }
-//·µ»Ø´«µİ¸øËûµÄÈÎÒâ¶ÔÏóµÄÀà
+//è¿”å›ä¼ é€’ç»™ä»–çš„ä»»æ„å¯¹è±¡çš„ç±»
 function isClass(o) {
     if (o === null) return "Null";
     if (o === undefined) return "Undefined";
     return Object.prototype.toString.call(o).slice(8, -1);
 }
 
-// ¶ÔÊı×é½øĞĞÈ¥ÖØ²Ù×÷£¬Ö»¿¼ÂÇÊı×éÖĞÔªËØÎªÊı×Ö»ò×Ö·û´®£¬·µ»ØÒ»¸öÈ¥ÖØºóµÄÊı×é
+// å¯¹æ•°ç»„è¿›è¡Œå»é‡æ“ä½œï¼Œåªè€ƒè™‘æ•°ç»„ä¸­å…ƒç´ ä¸ºæ•°å­—æˆ–å­—ç¬¦ä¸²ï¼Œè¿”å›ä¸€ä¸ªå»é‡åçš„æ•°ç»„
 function uniqArray(arr) {
     var result = [];
     for (var i = 0; i < arr.length; i++) {
@@ -51,22 +51,22 @@ function uniqArray(arr) {
     }
     return result;
 }
-// ¶ÔÊı×é½øĞĞÈ¥ÖØ²Ù×÷£¬Ö»¿¼ÂÇÊı×éÖĞÔªËØÎªÊı×Ö»ò×Ö·û´®£¬·µ»ØÒ»¸öÈ¥ÖØºóµÄÊı×é
+// å¯¹æ•°ç»„è¿›è¡Œå»é‡æ“ä½œï¼Œåªè€ƒè™‘æ•°ç»„ä¸­å…ƒç´ ä¸ºæ•°å­—æˆ–å­—ç¬¦ä¸²ï¼Œè¿”å›ä¸€ä¸ªå»é‡åçš„æ•°ç»„
 function uniqArray2(arr) {
 
     for (var i = 1; i < arr.length; i++) {
         ;
         if (arr.slice(0, i).indexOf(arr[i]) > -1) {
             arr.splice(i, 1);
-            i--;//³¤¶È¸Ä±ä£¬Òª¼õÒ»
+            i--;//é•¿åº¦æ”¹å˜ï¼Œè¦å‡ä¸€
         }
     }
     return arr;
 }
 
-// ÊµÏÖÒ»¸ö¼òµ¥µÄtrimº¯Êı£¬ÓÃÓÚÈ¥³ıÒ»¸ö×Ö·û´®£¬Í·²¿ºÍÎ²²¿µÄ¿Õ°××Ö·û
-// ¼Ù¶¨¿Õ°××Ö·ûÖ»ÓĞ°ë½Ç¿Õ¸ñ¡¢Tab
-// Á·Ï°Í¨¹ıÑ­»·£¬ÒÔ¼°×Ö·û´®µÄÒ»Ğ©»ù±¾·½·¨£¬·Ö±ğÉ¨Ãè×Ö·û´®strÍ·²¿ºÍÎ²²¿ÊÇ·ñÓĞÁ¬ĞøµÄ¿Õ°××Ö·û£¬²¢ÇÒÉ¾µôËûÃÇ
+// å®ç°ä¸€ä¸ªç®€å•çš„trimå‡½æ•°ï¼Œç”¨äºå»é™¤ä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œå¤´éƒ¨å’Œå°¾éƒ¨çš„ç©ºç™½å­—ç¬¦
+// å‡å®šç©ºç™½å­—ç¬¦åªæœ‰åŠè§’ç©ºæ ¼ã€Tab
+// ç»ƒä¹ é€šè¿‡å¾ªç¯ï¼Œä»¥åŠå­—ç¬¦ä¸²çš„ä¸€äº›åŸºæœ¬æ–¹æ³•ï¼Œåˆ†åˆ«æ‰«æå­—ç¬¦ä¸²strå¤´éƒ¨å’Œå°¾éƒ¨æ˜¯å¦æœ‰è¿ç»­çš„ç©ºç™½å­—ç¬¦ï¼Œå¹¶ä¸”åˆ æ‰ä»–ä»¬
 function simpleTrim(str) {
     while (str.indexOf(" ") == 0) {
         str = str.slice(1,str.length)
@@ -77,20 +77,20 @@ function simpleTrim(str) {
     return str;
 }
 
-// ¶Ô×Ö·û´®Í·Î²½øĞĞ¿Õ¸ñ×Ö·ûµÄÈ¥³ı¡¢°üÀ¨È«½Ç°ë½Ç¿Õ¸ñ¡¢TabµÈ£¬·µ»ØÒ»¸ö×Ö·û´®
-// ³¢ÊÔÊ¹ÓÃÒ»ĞĞ¼ò½àµÄÕıÔò±í´ïÊ½Íê³É¸ÃÌâÄ¿
+// å¯¹å­—ç¬¦ä¸²å¤´å°¾è¿›è¡Œç©ºæ ¼å­—ç¬¦çš„å»é™¤ã€åŒ…æ‹¬å…¨è§’åŠè§’ç©ºæ ¼ã€Tabç­‰ï¼Œè¿”å›ä¸€ä¸ªå­—ç¬¦ä¸²
+// å°è¯•ä½¿ç”¨ä¸€è¡Œç®€æ´çš„æ­£åˆ™è¡¨è¾¾å¼å®Œæˆè¯¥é¢˜ç›®
 function trim(str) {
     var pattern = /\S+/gi
     var result =  pattern.exec(str);
     return result[0];
 }
 
-// ÊµÏÖÒ»¸ö±éÀúÊı×éµÄ·½·¨£¬Õë¶ÔÊı×éÖĞÃ¿Ò»¸öÔªËØÖ´ĞĞfnº¯Êı£¬²¢½«Êı×éË÷ÒıºÍÔªËØ×÷Îª²ÎÊı´«µİ
+// å®ç°ä¸€ä¸ªéå†æ•°ç»„çš„æ–¹æ³•ï¼Œé’ˆå¯¹æ•°ç»„ä¸­æ¯ä¸€ä¸ªå…ƒç´ æ‰§è¡Œfnå‡½æ•°ï¼Œå¹¶å°†æ•°ç»„ç´¢å¼•å’Œå…ƒç´ ä½œä¸ºå‚æ•°ä¼ é€’
 function each(arr, fn) {
     arr.forEach(fn);
 }
 
-// »ñÈ¡Ò»¸ö¶ÔÏóÀïÃæµÚÒ»²ãÔªËØµÄÊıÁ¿£¬·µ»ØÒ»¸öÕûÊı
+// è·å–ä¸€ä¸ªå¯¹è±¡é‡Œé¢ç¬¬ä¸€å±‚å…ƒç´ çš„æ•°é‡ï¼Œè¿”å›ä¸€ä¸ªæ•´æ•°
 function getObjectLength(obj) {
     var i = 0;
     for (var name in obj){
@@ -99,7 +99,7 @@ function getObjectLength(obj) {
     return i;
 }
 
-// Ê¹ÓÃÊ¾Àı
+// ä½¿ç”¨ç¤ºä¾‹
 var obj = {
     a: 1,
     b: 2,
@@ -110,16 +110,16 @@ var obj = {
 };
 console.log(getObjectLength(obj)); // 3
 
-//// ÆäÖĞfnº¯Êı¿ÉÒÔ½ÓÊÜÁ½¸ö²ÎÊı£ºitemºÍindex
+//// å…¶ä¸­fnå‡½æ•°å¯ä»¥æ¥å—ä¸¤ä¸ªå‚æ•°ï¼šitemå’Œindex
 //
-//// Ê¹ÓÃÊ¾Àı,ÒòÎªÃ»ÓĞÖØÔØ»úÖÆ£¬ºóÃæµÄouput»á¸²¸ÇÕâÀïµÄoutput£¬ËùÒÔ°ÑºóÃæµÄoutput¸ÄÎªmoutput
+//// ä½¿ç”¨ç¤ºä¾‹,å› ä¸ºæ²¡æœ‰é‡è½½æœºåˆ¶ï¼Œåé¢çš„ouputä¼šè¦†ç›–è¿™é‡Œçš„outputï¼Œæ‰€ä»¥æŠŠåé¢çš„outputæ”¹ä¸ºmoutput
 //var arr = ['java', 'c', 'php', 'html'];
 //function output(item) {
 //    console.log(item)
 //}
 //each(arr, output);  // java, c, php, html
 //
-//// Ê¹ÓÃÊ¾Àı
+//// ä½¿ç”¨ç¤ºä¾‹
 //var arr = ['java', 'c', 'php', 'html'];
 //function moutput(item, index) {
 //    console.log(index + ': ' + item)
@@ -155,62 +155,3 @@ console.log(getObjectLength(obj)); // 3
 //console.log(isArray("1"));
 //console.log(isFunction(isArray));
 //console.log(isFunction(2));
-
-
-// ÊµÏÖÒ»¸ö¼òµ¥µÄQuery
-//ÄÜÁ¦ÓĞÏŞ£¬²»ÄÜÊµÏÖ×éºÏÊ¹ÓÃ
-function $(selector) {
-    var pattern = /#\w+|\.\w+|\w+|\[\w+=?\w+\]/gi;
-    var s;
-    while ((s = pattern.exec(selector)) != null){
-        return arguments.callee(s)[0]
-    }
-    var flag = selector.slice(0, 1);
-    var name = selector.slice(1, selector.length);
-    if (flag === "#") {
-        return document.getElementById(name);
-    } else if (flag === ".") {
-        return getElementByClaass(name);
-    } else if (flag === "[") {
-        return getElementByAttribute(name);
-    }else {
-        return document.getElementsByTagName(selector);
-    }
-}
-function getElementByClaass(name) {
-    var allElements = document.getElementsByTagName("*");
-    var results = [];
-    var pattern = /\w+/gi;
-    for (var i = 0; i < allElements.length; i++) {
-        pattern.lastIndex = 0;
-        while ((temp = pattern.exec(allElements[i].className)) != null) {
-            if (temp == name) {
-                results.push(allElements[i]);
-            }
-        }
-    }
-    return results;
-}
-function getElementByAttribute(name) {
-    console.log(name);
-    var allElements = document.getElementsByTagName("*");
-    var results = [];
-    name = name.slice(0, -1);
-    if (name.split("=").length > 1) {
-        var value = name.split("=")[1];
-        name = name.split("=")[0];
-        for (var i = 0; i < allElements.length; i++) {
-            if (allElements[i].getAttributeNode(name)
-                && allElements[i].getAttributeNode(name).value == value) {
-                results.push(allElements[i]);
-            }
-        }
-    } else {
-        for (var i = 0; i < allElements.length; i++) {
-            if (allElements[i].getAttributeNode(name)) {
-                results.push(allElements[i]);
-            }
-        }
-    }
-    return results;
-}
